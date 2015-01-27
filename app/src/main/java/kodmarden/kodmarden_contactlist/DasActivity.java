@@ -1,29 +1,27 @@
 package kodmarden.kodmarden_contactlist;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.view.View;
-import android.content.Intent;
+import android.widget.TextView;
 
 
-public class MainActivity extends ActionBarActivity {
+public class DasActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+       // setContentView(R.layout.activity_das);
+        Intent intent = getIntent();
+        String message = intent.getStringExtra("dasString");
+        TextView textView = new TextView(this);
+        textView.setTextSize(40);
+        textView.setText(message);
+        setContentView(textView);
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -38,12 +36,5 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void doStuff(View view) {
-        Intent intent = new Intent(this, DasActivity.class);
-        EditText editText = (EditText) findViewById(R.id.edit_message);
-        intent.putExtra("dasString", editText.getText().toString());
-        startActivity(intent);
     }
 }
